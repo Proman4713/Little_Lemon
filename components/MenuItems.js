@@ -4,9 +4,11 @@ import {
     Text,
     StyleSheet,
     ScrollView,
-    FlatList
+    FlatList,
+    useWindowDimensions
 } from 'react-native';
 import Item from "./Item";
+import LittleLemonFooter from "./LittleLemonFooter";
 
 const menuItemsToDisplay = [
 	{ name: 'Hummus', price: '5.00', id: '1A' },
@@ -32,11 +34,13 @@ const menuItemsToDisplay = [
     { name: 'Panna Cotta', price: '5.00', id: '21U' },
 ]
 
-export default function MenuItems() {
+export default function MenuItems({ navigation }) {
+    const { width, height, scale, fontScale } = useWindowDimensions()
+
     return (
         <>
             <View style={menuStyles.container}>
-                <Text style={menuStyles.text}>View Menu</Text>
+                <Text style={menuStyles.text}>View Menu {width}</Text>
                 <FlatList
                 data={menuItemsToDisplay}
                 keyExtractor={item => item.id}
@@ -49,6 +53,7 @@ export default function MenuItems() {
 let menuStyles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#495E57",
     },
     scroll: {
         paddingLeft: 30,

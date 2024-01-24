@@ -2,14 +2,15 @@ import * as React from "react"
 import {
 	View,
 	Text,
-	StyleSheet
+	StyleSheet,
+	Platform
 } from 'react-native';
 
 export default function LittleLemonFooter() {
 	return (
 		<>
 			<View style={footerStyles.container}>
-				<Text style={footerStyles.paragraph}>All rights reserved by Little Lemon, 2022</Text>
+				<Text style={footerStyles.paragraph}>{Platform.OS === "ios" ? "Copyright © 2022 Little Lemon" : "All rights reserved by Little Lemon, 2022"}</Text>
 			</View>
 		</>
 	);

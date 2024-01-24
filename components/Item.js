@@ -2,14 +2,15 @@ import * as React from "react"
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    Platform
 } from 'react-native';
 
 export default function Item({ name="", price="0" }) {
     return (
         <>
             <View style={itemStyles.item}>
-                <Text style={itemStyles.cont} numberOfLines={1}>
+                <Text style={[itemStyles.cont, Platform.OS === "ios" ? {} : {maxWidth: "74%"}]} numberOfLines={1}>
                     { name }
                 </Text>
                 <Text style={itemStyles.price}>{ price + " EGP" }</Text>
@@ -25,18 +26,17 @@ let itemStyles = StyleSheet.create({
         backgroundColor: "#ebc934",
         marginBottom: 5,
         borderRadius: 15,
-        flexDirection: "row",
+        flexDirection: Platform.OS === "ios" ? "column" : "row",
         justifyContent:"space-between"
     },
     cont: {
         color: "black",
         fontSize: 30,
-        fontWeight: "bold",
-        maxWidth: "74%"
+        fontWeight: "bold"
     },
     price: {
         color: "black",
-        fontSize: 22,
+        fontSize: Platform.OS === "ios" ? 15 : 22,
         color: "#495E57",
         fontWeight: "bold",
         marginTop: "auto",
